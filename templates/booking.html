@@ -1,0 +1,169 @@
+<!-- User does their booking here-->
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<style>
+
+body{
+  background:url("https://c.wallhere.com/photos/46/d4/nature_landscape_mountain_top_clouds_sunrise_sunset_Glacier_National_Park_mountain_chain-2307846.jpg!d") no-repeat fixed center;
+}
+</style>
+
+<header>
+    
+</header>
+
+<body style="background-color: #cadeed;">       
+  <ul>
+    <li><a href="{{ url_for('horizon') }}">Home</a></li>
+    <li><a href="{{ url_for('booking') }}">Bookings</a></li>
+    <li><a href="{{ url_for('aboutInfo') }}">About Us</a></li>
+    <li class="dropdown" style="float:right;">
+      <a href="javascript:void(0)" class="dropbtn">Account</a>
+      <div class="dropdown-content">
+        <a href="{{ url_for('register') }}">Register</a>
+        <a href="{{ url_for('login') }}">Login</a>
+      </div>
+    </li>
+  </ul>
+    
+    <h1>Secure Your Perfect Flight With Ease</h1>
+
+    <form method="post" action="/booking" id="flight-form">
+      <label for="From:">Departure</label>
+      <select id="departure" name="departure" required>
+        <option value="Birmingham">Birmingham</option>
+        <option value="Bristol">Bristol</option>
+        <option value="Cardiff">Cardiff</option>
+        <option value="Dundee">Dundee</option>
+        <option value="Glasgow">Glasgow</option>
+        <option value="London">London</option>
+        <option value="Manchester">Manchester</option>
+        <option value="Newcastle">Newcastle</option>
+        <option value="Portsmouth">Portsmouth</option>
+        <option value="Southampton">Southampton</option>
+        <option value="Edinburgh">Edinburgh</option>
+        <option value="Aberdeen">Aberdeen</option>
+    </select>
+
+
+    <label for="To:">Arrival</label>
+    <select id="arrival" name="arrival" required>
+      <option value="Birmingham">Birmingham</option>
+      <option value="Bristol">Bristol</option>
+      <option value="Cardiff">Cardiff</option>
+      <option value="Dundee">Dundee</option>
+      <option value="Glasgow">Glasgow</option>
+      <option value="London">London</option>
+      <option value="Manchester">Manchester</option>
+      <option value="Newcastle">Newcastle</option>
+      <option value="Portsmouth">Portsmouth</option>
+      <option value="Southampton">Southampton</option>
+      <option value="Edinburgh">Edinburgh</option>
+      <option value="Aberdeen">Aberdeen</option>
+    </select>
+   
+    <label for="Class:">Class</label>
+      <select id="class" name="class" required>
+        <option value="Economy">Economy Class</option>.
+        <option value="Business">Business Class</option>
+      </select>  
+
+
+    <label for="Passengers:">Passengers</label>
+    <input type="number" name="passengers" min="1" max="130" step="1" required>
+
+
+    <label for="from-date">From:</label>
+    <input type="date" id="from-date" name="from-date" required>
+    <!-- Javascript to make sure that they cannot book on the weekends -->
+    <script>
+      document.getElementById('from-date').addEventListener('input', function() {
+          const date = new Date(this.value);
+          const day = date.getUTCDay(); // 0 = Sunday, 6 = Saturday
+      
+          if (day === 0 || day === 6) {
+              alert('Bookings are not allowed on Saturday or Sunday.');
+              this.value = ''; // Clear invalid date
+          }
+      });
+      </script>
+     
+    <label for="depart-time">Departure time:</label>
+    <input type="time" id="depart-time" name="depart-time" required>
+
+
+    <button class="button" type="submit" >book now</button>
+  </form>
+  <p>Note: All prices are displayed as the price per person. Business tickets are double economy tickets!</p>
+  <div id="flightsTableWrapper" style="margin: 30px auto; width: fit-content; background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+    <table id="flightsTable">
+      <thead>
+        <tr>
+          <th><b>From</b></th>
+          <th><b>To</b></th>
+          <th><b>Departure Time</b></th>
+          <th><b>Arrival Time</b></th>
+          <th><b>Economy Price</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for flight in flights %}
+        <tr data-departure="{{ flight['departure'] }}" data-arrival="{{ flight['arrival'] }}">
+          <td>{{ flight['departure'] }}</td>
+          <td>{{ flight['arrival'] }}</td>
+          <td>{{ flight['depart_time'] }}</td>
+          <td>{{ flight['arrive_time'] }}</td>
+          <td>{{ flight['standard_fare'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  </tbody>
+  </table>
+  </form>
+  <!-- Javascript to filter the flights from my database when user selects cities so they can see their option-->
+  <script>
+    function filterFlights() {
+      const departure = document.getElementById('departure').value;
+      const arrival = document.getElementById('arrival').value;
+  
+      // Prevent selecting the same city for both
+      if (departure && arrival && departure === arrival) {
+        alert("Departure and arrival cannot be the same city.");
+        document.getElementById('arrival').value = "";
+        return;
+      }
+  
+      const rows = document.querySelectorAll('#flightsTable tbody tr');
+      let visibleCount = 0;
+  
+      rows.forEach(row => {
+        const rowDeparture = row.getAttribute('data-departure');
+        const rowArrival = row.getAttribute('data-arrival');
+  
+        const matchesDeparture = !departure || rowDeparture === departure;
+        const matchesArrival = !arrival || rowArrival === arrival;
+  
+        if (matchesDeparture && matchesArrival) {
+          row.style.display = "";
+          visibleCount++;
+        } else {
+          row.style.display = "none";
+        }
+      });
+  
+      // Show/hide table if no matches
+      document.getElementById('flightsTableWrapper').style.display = visibleCount > 0 ? "block" : "none";
+    }
+  
+    document.getElementById('departure').addEventListener('change', filterFlights);
+    document.getElementById('arrival').addEventListener('change', filterFlights);
+  
+    // Trigger initial filter if form was pre-filled
+    window.addEventListener('load', filterFlights);
+  </script>
+</body>
