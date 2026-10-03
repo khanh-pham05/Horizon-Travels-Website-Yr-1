@@ -1,0 +1,146 @@
+<!-- Page about the company -->
+ <!DOCTYPE html>
+ 
+ <head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+ </head>
+ 
+ <body class="about-body">       
+       <ul>
+        <li><a href="{{ url_for('horizon') }}">Home</a></li>
+        <li><a href="{{ url_for('booking') }}">Bookings</a></li>
+        <li><a href="{{ url_for('aboutInfo') }}">About Us</a></li>
+         <li class="dropdown" style="float:right;">
+           <a href="javascript:void(0)" class="dropbtn">Account</a>
+           <div class="dropdown-content">
+            <a href="{{ url_for('register') }}">Register</a>
+            <a href="{{ url_for('login') }}">Login</a>
+           </div>
+         </li>
+       </ul>
+ 
+       <h1>About Us</h1>
+       <p>
+         At Horizon Travels, we believe that travel should be seamless, affordable, and unforgettable. 
+         As a leading air travel booking company, we specialize in connecting travelers with the best flight options worldwide. Whether you're planning a business trip, a dream vacation, or a last-minute getaway, our intuitive platform and expert customer support ensure a hassle-free booking experience. 
+         With competitive prices, exclusive deals, and a commitment to excellence, we make it easier than ever to explore the world with confidence. 
+         Let us take you where you need to go - quickly, safely, and affordably.
+       </p>
+ 
+       <h2>Seat Classes Explained</h2>
+       <table style="width:100%">
+         <tr>
+           <th>Class Type</th>
+           <th>Amenities Included</th>
+           <th>Price</th>
+         </tr>
+         <tr>
+           <td>Economy Class</td>
+           <td>Travel comfortably and affordably with our Economy Class, designed to provide a pleasant journey without breaking the bank. Enjoy a range of amenities tailored to ensure a smooth and enjoyable flight experience:<br>
+             
+             <br>✈️ Comfortable Seating – Ergonomically designed seats with adjustable headrests for optimal support.
+             <br>🍽 In-Flight Meals & Snacks – Complimentary refreshments or the option to purchase from a diverse menu (varies by airline and route).<br>
+             📺 Entertainment Options – Personal or shared screens offering movies, TV shows, music, and games on select flights.<br>
+             🔌 Power & Connectivity – USB charging ports and Wi-Fi availability (offered on select flights for a fee or free access).<br>
+             👜 Generous Baggage Allowance – Carry-on and checked baggage options (vary by airline and ticket type).<br>
+             😊 Friendly Cabin Crew – Dedicated service to ensure a comfortable and enjoyable journey.<br>
+             
+             <br>Whether you're traveling for business or leisure, our Economy Class offers a great balance of comfort, convenience, and value.</td>
+           <td>Standard Price</td>
+         </tr>
+         <tr>
+           <td>Business Class</td>
+           <td>Experience the perfect blend of luxury, comfort, and convenience with our Business Class offerings. Designed for travelers who seek a premium experience, Business Class provides exceptional service and world-class amenities to make your journey as enjoyable as possible.<br>
+ 
+             <br>💺 Spacious Seating – Reclining, lie-flat, or extra-wide seats with ample legroom for maximum comfort.
+             <br>🍽 Gourmet Dining – Multi-course meals curated by top chefs, paired with premium beverages and fine wines.
+             <br>📺 Enhanced Entertainment – Larger personal screens with an extensive selection of movies, TV shows, music, and games.
+             <br>🔌 Power & Connectivity – USB ports, power outlets, and complimentary high-speed Wi-Fi on select flights.
+             <br>👜 Priority Baggage & Boarding – Extra baggage allowance, priority check-in, boarding, and expedited security clearance.
+             <br>🛏 Luxury Travel Kit – Complimentary amenity kits with high-end skincare products, eye masks, and other travel essentials.
+             <br>🏡 Exclusive Lounge Access – Relax in luxurious airport lounges with gourmet dining, showers, and business facilities before departure.
+             <br>😊 Personalized Service – Dedicated cabin crew ensuring a tailored, first-class experience throughout your journey.<br>
+             
+             <br>Whether you're traveling for business or pleasure, our Business Class ensures a smooth, stress-free, and indulgent journey from takeoff to landing.</td>
+           <td>2 x Standard Price</td>
+         </tr>
+       </table>
+ 
+       <h2>Discounts</h2>
+       <p>
+         Flight can be booked maximum 90 days in advance. Discounts may be applied.
+       </p>
+       <table style="width:100%">
+         <tr>
+           <th>Number of days booked in advance</th>
+           <th>Discount Applied</th>
+         </tr>
+         <tr>
+           <td>Between 80 and 90 days</td>
+           <td>25%</td>
+         </tr>
+         <tr>
+           <td>Between 60 and 79 days</td>
+           <td>15%</td>
+         </tr>
+         <tr>
+           <td>Between 45 and 59 days</td>
+           <td>10%</td>
+         </tr>
+         <tr>
+           <td>Under 45 days</td>
+           <td>No discount will be applied</td>
+         </tr>
+       </table>
+ 
+       <h2>Cancellation Policy</h2>
+       <p>
+         Cancellation charges may be applied.
+       </p>
+       <table style="width:100%">
+         <tr>
+           <th>Number of days before booking</th>
+           <th>Cancellation Charge</th>
+         </tr>
+         <tr>
+           <td>>60 days</td>
+           <td>No cancellation charge will be applied</td>
+         </tr>
+         <tr>
+           <td>Between 30 and 60 days</td>
+           <td>Up to 40% of total booking price</td>
+         </tr>
+         <tr>
+           <td>Less than 30 days</td>
+           <td>100% of total booking price</td>
+         </tr>
+ 
+       </table>
+ 
+       <h2>Privacy Policy</h2>
+       <p>
+         By creating an account with Horizon Travels, you are agreeing to the collection and usage of your personal data. 
+         A full description of how your data is collected and used can be found below.<br>
+         <br>What personal data do we collect?<br>
+         We collect data that you have entered to create your account and when booking flights like your email address, name, card details, etc. <br>
+         
+         <br> Usage of your personal data<br>
+         Collected data is used for the following purposes:<br>
+         - For the creation and administration of your account with our services<br>
+         - To process any payments for bookings<br>
+         - For effective communication and timely response to your inquiries or requests<br>
+ 
+         <br>Access to your personal data<br>
+         In accordance with the Data Protection Act 2018, you have the right to access, correct, or request the deletion of any personal data we hold about you. 
+         To submit a request, please email us at personal-data-requests@horizontravels.com.<br>
+ 
+         <br>Where is the data stored and how long for?<br>
+         All collected personal information is securely stored within our databases and retained only for as long as necessary to provide the services you have requested.<br>
+ 
+         <br>How is your personal data protected?<br>
+         Sensitive personal information is securely stored within our databases. 
+         Whenever possible, data that does not require storage, such as bank card numbers, is processed once and not retained. 
+         Additionally, passwords are hashed, ensuring they cannot be stolen or reused, further enhancing the security of your account and personal details.
+       </p>
+ </body>
