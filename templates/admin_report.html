@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Reports</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f6fa;
+      margin: 20px;
+    }
+    h2 {
+      color: #333;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 40px;
+      background-color: #fff;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid #ccc;
+    }
+    th {
+      background-color: #cadeed;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Admin Reports</h1>
+
+  <h2>Monthly Sales</h2>
+  <table>
+    <tr>
+      <th>Month</th>
+      <th>Total Sales</th>
+    </tr>
+    {% for sale in monthly_sales %}
+    <tr>
+      <td>{{ sale.month }}</td>
+      <td>£{{ sale.monthly_sales }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Sales by Journey</h2>
+  <table>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>Total Sales</th>
+    </tr>
+    {% for journey in journey_sales %}
+    <tr>
+      <td>{{ journey.departure }}</td>
+      <td>{{ journey.arrival }}</td>
+      <td>£{{ journey.journey_sales }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Top Customers</h2>
+  <table>
+    <tr>
+      <th>User ID</th>
+      <th>Total Spent</th>
+    </tr>
+    {% for customer in top_customers %}
+    <tr>
+      <td>{{ customer.user_id }}</td>
+      <td>£{{ customer.total_spent }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Route Profitability</h2>
+  <table>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>Revenue</th>
+      <th>Cost</th>
+      <th>Profit</th>
+    </tr>
+    {% for route in profitability %}
+    <tr>
+      <td>{{ route.departure }}</td>
+      <td>{{ route.arrival }}</td>
+      <td>£{{ route.revenue }}</td>
+      <td>£{{ route.cost }}</td>
+      <td>£{{ route.profit }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <a href="/admin"><button>Back to Admin</button></a>
+
+</body>
+</html>
